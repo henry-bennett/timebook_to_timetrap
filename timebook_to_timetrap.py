@@ -26,8 +26,8 @@ timetrap_db_cursor = timetrap_db_connection.cursor()
 export_query = "SELECT id, sheet, start_time, end_time, description FROM entry"
 for row in timebook_db_cursor.execute(export_query):
     import_row_query = ("INSERT INTO entries VALUES (:id, :description,"
-	    " DATETIME(:start_time, 'unixepoch', 'localtime'),"
-	    " DATETIME(:end_time, 'unixepoch', 'localtime'), :sheet)")
+        " DATETIME(:start_time, 'unixepoch', 'localtime'),"
+        " DATETIME(:end_time, 'unixepoch', 'localtime'), :sheet)")
     parameters = dict(zip(row.keys(), row))
     timetrap_db_cursor.execute(import_row_query, parameters)
 timetrap_db_connection.commit()
